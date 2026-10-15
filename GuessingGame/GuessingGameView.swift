@@ -157,7 +157,7 @@ struct GuessingGameView: View {
             // TRY: Change this message. Make it kinder, or sillier.
             message = "\(guess) is defintely not my number :( Try again."
             messageSymbol = "xmark.circle.fill"
-            messageColor = Color.red
+            messageColor = Color.teal
         }
     }
     if guess < secretNumber {
