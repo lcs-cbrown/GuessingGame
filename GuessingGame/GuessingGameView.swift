@@ -55,7 +55,7 @@ struct GuessingGameView: View {
 
             // The title at the top of the screen.
             HStack {
-                Image(systemName: "sparkle.magnifyingglass")
+                Image(systemName: "magnifyingglass")
                 Text("Guessing Game")
             }
             .font(.largeTitle)
@@ -126,7 +126,10 @@ struct GuessingGameView: View {
                 .buttonStyle(.borderedProminent)
             }
 
-            Text("Guesses so far: \(guessCount)")
+            HStack {
+                Image(systemName: "moon.stars")
+                Text("Guesses so far: \(guessCount)")
+            }
                 .font(.headline)
                 .foregroundStyle(Color.secondary)
         }
@@ -144,10 +147,10 @@ struct GuessingGameView: View {
 
     // Checks the player's guess against the secret number.
     func checkGuess() {
-
+        
         // One more guess has been made.
         guessCount += 1
-
+        
         if guess == secretNumber {
             message = "Yes! \(secretNumber) is my number."
             messageSymbol = "star.circle.fill"
@@ -156,14 +159,12 @@ struct GuessingGameView: View {
         } else {
             // TRY: Change this message. Make it kinder, or sillier.
             message = "\(guess) is defintely not my number :( Try again."
-            messageSymbol = "xmark.circle.fill"
+            messageSymbol = "nosign.app"
             messageColor = Color.teal
         }
-    }
-    if guess < secretNumber {
         
-        message = "lower!"
     }
+    
     
     
     // Makes the guess 10 smaller, but never smaller than the lowest number.
