@@ -147,22 +147,27 @@ struct GuessingGameView: View {
 
     // Checks the player's guess against the secret number.
     func checkGuess() {
-        
+ 
         // One more guess has been made.
         guessCount += 1
-        
+ 
         if guess == secretNumber {
-            message = "Yes! \(secretNumber) is my number."
+            message = "Yes, \(playername)! \(secretNumber) is my number."
             messageSymbol = "star.circle.fill"
             messageColor = Color.green
             gameIsOver = true
+            gamesWon += 1
         } else {
-            // TRY: Change this message. Make it kinder, or sillier.
-            message = "\(guess) is defintely not my number :( Try again."
-            messageSymbol = "nosign.app"
-            messageColor = Color.teal
+            if guess < secretNumber {
+                message = "\(guess) is too low. Go higher."
+                messageSymbol = "arrow.up.circle.fill"
+                messageColor = Color.blue
+            } else {
+                message = "\(guess) is too high. Go lower."
+                messageSymbol = "arrow.down.circle.fill"
+                messageColor = Color.red
+            }
         }
-        
     }
     
     
