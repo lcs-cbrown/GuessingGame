@@ -21,7 +21,7 @@ import SwiftUI
 // TRY: Change highestNumber to 10 for an easy game, or to 1000 for a hard one.
 let lowestNumber: Int = 1
 let highestNumber: Int = 100
-
+let playerName: String = "friend"
 // The game itself: what it remembers, what it shows on the screen,
 // and what it does when you click a button.
 struct GuessingGameView: View {
@@ -47,6 +47,8 @@ struct GuessingGameView: View {
 
     // Becomes true when the player finds the secret number.
     @State var gameIsOver: Bool = false
+    
+    @State var gamesWon: Int = 0
 
     // MARK: - Computed properties
 
@@ -146,13 +148,25 @@ struct GuessingGameView: View {
     // MARK: - Functions
 
     // Checks the player's guess against the secret number.
+    // Changes the guess by the amount given, but keeps it inside the range.
+    // A negative amount makes the guess smaller.
+    func changeGuess(by amount: Int) {
+        guess += amount
+        if guess < lowestNumber {
+            guess = lowestNumber
+        }
+        if guess > highestNumber {
+            guess = highestNumber
+        }
+    }
+    
     func checkGuess() {
  
         // One more guess has been made.
         guessCount += 1
  
         if guess == secretNumber {
-            message = "Yes, \(playername)! \(secretNumber) is my number."
+            message = "Yes, \(playerName)! \(secretNumber) is my number."
             messageSymbol = "star.circle.fill"
             messageColor = Color.green
             gameIsOver = true
